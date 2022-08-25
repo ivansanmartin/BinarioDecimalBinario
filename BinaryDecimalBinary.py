@@ -20,7 +20,7 @@ def binario_decimal(numeroBinario):
             suma += potencias_de_dos[recorrer_binarios]
 
     append_transformation = open("history/binary_dec_history.txt", "a")
-    append_transformation.write("\n" + str(numeroBinario) + " = " + str(suma))
+    append_transformation.write(str(numeroBinario) + " = " + str(suma))
     append_transformation.close()
 
     return suma
@@ -39,7 +39,7 @@ def decimal_binario(numeroDecimal):
         else:
             binario.append(0)
     append_transformation = open("history/decimal_bin_history.txt", "a")
-    append_transformation.write("\n" + str(decimal_guardado) + " = " + "".join(map(str, binario)))
+    append_transformation.write(str(decimal_guardado) + " = " + "".join(map(str, binario)))
     append_transformation.close()
 
     return "".join(map(str, binario)), decimal_guardado
@@ -104,6 +104,8 @@ def menu():
         \t [3] Pasar de binario a decimal
         \t\t [4] Mostrar historial
         \t [5] Salir
+        \n
+        \t [C] Limpiar historial (borra todo los registros)
         ''')
 
 
