@@ -1,6 +1,5 @@
 import os
 from os import system
-from pathlib import Path
 
 
 def potencias():
@@ -52,7 +51,20 @@ def historial_dec_bin():
     read_history = open("history/decimal_bin_history.txt")
     print(">> Historial\n" + prefix + " Decimales a binarios " + subprefix)
     print(read_history.read())
+
+    if os.stat("history/decimal_bin_history.txt").st_size == 0:
+        print("No existen registros.")
+
     read_history.close()
+
+    back_menu = str(input("\nDesea volver al menu? SI | NO: "))
+
+    if back_menu.casefold() == "si":
+        limpiar()
+        inicio()
+    elif back_menu.casefold() == "no":
+        limpiar()
+        salir()
 
 
 def historial_bin_dec():
@@ -61,7 +73,19 @@ def historial_bin_dec():
     read_history = open("history/binary_dec_history.txt")
     print(">> Historial\n" + prefix + " Binarios a decimales " + subprefix)
     print(read_history.read())
+    if os.stat("history/binary_dec_history.txt").st_size == 0:
+        print("No existen registros.")
+
     read_history.close()
+
+    back_menu = str(input("\nDesea volver al menu? SI | NO: "))
+
+    if back_menu.casefold() == "si":
+        limpiar()
+        inicio()
+    elif back_menu.casefold() == "no":
+        limpiar()
+        salir()
 
 
 def salir():
@@ -96,21 +120,48 @@ def inicio():
         numero = str(input("ERROR! Ingrese la opcion: "))
 
     if numero == "1":
+        flag = True
         limpiar()
         decimal = int(input("Ingrese un numero decimal que desea convertir: "))
+
         resultado, decimal_guardado = decimal_binario(decimal)
         limpiar()
 
         print(f"El numero {decimal} ha sido transformado correctamente.\n\t Numero decimal a binario: {resultado}")
+        while flag:
+            new_entry = str(input("Desea convertir otro numero decimal? SI | NO: "))
+            if new_entry.casefold() == "si":
+                limpiar()
+                decimal = int(input("Ingrese un numero decimal que desea convertir: "))
+                resultado, decimal_guardado = decimal_binario(decimal)
+                print(f"El numero {decimal} ha sido transformado correctamente.\n\t Numero decimal a binario: {resultado}")
+            elif new_entry.casefold() == "no":
+                limpiar()
+                inicio()
+                break
+
     elif numero == "2":
         historial_dec_bin()
 
     elif numero == "3":
+        flag = True
         limpiar()
         binario = str(input("Ingrese el numero binario que desea convertir: "))
         resultado = binario_decimal(binario)
         limpiar()
         print(f" El numero {binario} ha sido transformado correctamente\n\tNumero binario a decimal: {resultado}")
+        while flag:
+            new_entry = str(input("Desea convertir otro numero binario? SI | NO: "))
+            if new_entry.casefold() == "si":
+                limpiar()
+                binario = str(input("Ingrese un numero binario que desea convertir: "))
+                resultado = binario_decimal(binario)
+                print(f"El numero {binario} ha sido transformado correctamente.\n\t Numero decimal a binario: {resultado}")
+            elif new_entry.casefold() == "no":
+                limpiar()
+                inicio()
+                break
+
     elif numero == "4":
         historial_bin_dec()
 
