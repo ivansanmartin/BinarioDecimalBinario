@@ -6,3 +6,6 @@ If you use Pycharm for ejecuted this program i am recommended change execution m
 For what?
 
 R: For execute correctely this program since we use an "os" package which we need to execute commands in the terminal
+
+
+WARNING! This program probably contains errors, the developer is learning while develpment this project!
